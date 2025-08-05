@@ -1,66 +1,48 @@
-## Foundry
+🎰 Decentralized Lottery Smart Contract
+A secure, verifiable, and decentralized lottery system built with Solidity and powered by Chainlink VRF for fair randomness.
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+✨ Features
+🎲 Verifiable Randomness: Uses Chainlink VRF to select a truly random winner.
 
-Foundry consists of:
+🕒 Timed Entry: Players can only enter the lottery during an active round.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+💰 Automatic Payouts: The winner automatically receives the full contract balance.
 
-## Documentation
+🔁 Resettable Rounds: After a winner is picked, the lottery resets for the next round.
 
-https://book.getfoundry.sh/
+✅ Test Coverage: Built and tested with Foundry, including mocks for local development.
 
-## Usage
+🧪 Gas-efficient Design: Optimized for minimal gas consumption.
 
-### Build
+⚙️ Tech Stack
+Solidity
 
-```shell
-$ forge build
-```
+Chainlink VRF v2
 
-### Test
+Foundry (Forge & Anvil)
 
-```shell
-$ forge test
-```
+Hardhat (optional for deployments)
 
-### Format
+🚀 Quick Start
+bash
+Copy
+Edit
+forge test
+📂 Project Structure
+Lottery.sol: Core lottery contract
 
-```shell
-$ forge fmt
-```
+VRFCoordinatorV2Mock.sol: Mock for Chainlink VRF testing
 
-### Gas Snapshots
+test/: Unit tests using Foundry
 
-```shell
-$ forge snapshot
-```
+script/: Deployment scripts
 
-### Anvil
+🛡️ Security
+Winner selection is powered by Chainlink VRF to prevent manipulation.
 
-```shell
-$ anvil
-```
+Only the owner can trigger upkeep and winner selection.
 
-### Deploy
+All ETH is transferred securely using .call.
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+📜 License
+MIT
