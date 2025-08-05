@@ -1,48 +1,65 @@
-🎰 Decentralized Lottery Smart Contract
-A secure, verifiable, and decentralized lottery system built with Solidity and powered by Chainlink VRF for fair randomness.
+# 🧾 Decentralized Lottery Smart Contract
 
-✨ Features
-🎲 Verifiable Randomness: Uses Chainlink VRF to select a truly random winner.
+This project implements a decentralized lottery system using Solidity and Chainlink VRF for provably fair randomness. Participants enter the lottery by paying a fixed entrance fee, and after a set interval, a random winner is selected and awarded the prize pool.
 
-🕒 Timed Entry: Players can only enter the lottery during an active round.
+## 🚀 Features
 
-💰 Automatic Payouts: The winner automatically receives the full contract balance.
+- Chainlink VRF for verifiable randomness
+- Chainlink Keepers (Automation) for automatic winner selection
+- Modular, gas-optimized smart contracts using Foundry
+- Unit and integration tests included
 
-🔁 Resettable Rounds: After a winner is picked, the lottery resets for the next round.
+## 📦 Tech Stack
 
-✅ Test Coverage: Built and tested with Foundry, including mocks for local development.
+- Solidity
+- Foundry (Forge, Cast)
+- Chainlink VRF v2
+- Chainlink Automation (Keepers)
 
-🧪 Gas-efficient Design: Optimized for minimal gas consumption.
+## 🧪 Test Coverage
 
-⚙️ Tech Stack
-Solidity
+- Full unit tests using Forge
+- VRF Coordinator mock for local testing
+- Automation-compatible testing flow
 
-Chainlink VRF v2
+## 📂 Project Structure
 
-Foundry (Forge & Anvil)
+contracts/ → Core Lottery contract and interfaces
+script/ → Deployment scripts
+test/ → Unit and integration tests
+foundry.toml → Foundry config
 
-Hardhat (optional for deployments)
+## ⚙️ How It Works
 
-🚀 Quick Start
-bash
-Copy
-Edit
+1. Users enter the lottery by sending ETH equal to the `entranceFee`.
+2. After a set interval (configurable), the Chainlink Keeper checks if it's time to pick a winner.
+3. If yes, Chainlink VRF is requested for a random number.
+4. A random winner is selected from the participants and the prize is transferred.
+5. The lottery resets for the next round.
+
+## 🔐 Security Considerations
+
+- Only the contract can request randomness from Chainlink VRF
+- Reentrancy protection using `ReentrancyGuard`
+- State transitions are validated to prevent manipulation
+
+## 📜 Deployment
+
+```bash
+# Install dependencies
+forge install
+
+# Set your environment variables
+cp .env.example .env
+
+# Deploy to testnet
+forge script script/DeployLottery.s.sol --rpc-url <your_rpc> --private-key $PRIVATE_KEY --broadcast
+
+✅ Run Tests
 forge test
-📂 Project Structure
-Lottery.sol: Core lottery contract
 
-VRFCoordinatorV2Mock.sol: Mock for Chainlink VRF testing
+👨‍💻 Author
+Etinosa Ogbevoen
 
-test/: Unit tests using Foundry
-
-script/: Deployment scripts
-
-🛡️ Security
-Winner selection is powered by Chainlink VRF to prevent manipulation.
-
-Only the owner can trigger upkeep and winner selection.
-
-All ETH is transferred securely using .call.
-
-📜 License
+📄 License
 MIT
